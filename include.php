@@ -10,6 +10,8 @@ $classes = [
     "travelsoft\\bx24customizer\\stores\\Country" => "lib/stores/Country.php",
     "travelsoft\\bx24customizer\\stores\\Resort" => "lib/stores/Resort.php",
     "travelsoft\\bx24customizer\\stores\\Food" => "lib/stores/Food.php",
+    "travelsoft\\bx24customizer\\stores\\AdvertisingSources" => "lib/stores/AdvertisingSources.php",
+    "travelsoft\\bx24customizer\\stores\\TourType" => "lib/stores/TourType.php",
 
     "travelsoft\\bx24customizer\\adapters\\Highloadblock" => "lib/adapters/Highloadblock.php",
     "travelsoft\\bx24customizer\\adapters\\Iblock" => "lib/adapters/Iblock.php",

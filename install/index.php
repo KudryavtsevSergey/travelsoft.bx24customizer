@@ -156,9 +156,19 @@ class travelsoft_bx24customizer extends CModule
                     Option::set($this->MODULE_ID, "RESORT_DEAL_FIELD");
                     Option::set($this->MODULE_ID, "DURATION_DEAL_FIELD");
                     Option::set($this->MODULE_ID, "FOOD_DEAL_FIELD");
+                    Option::set($this->MODULE_ID, "DISCOUNT_DEAL_FIELD");
+                    Option::set($this->MODULE_ID, "TOUR_TYPE_DEAL_FIELD");
+                    Option::set($this->MODULE_ID, "ADVERTISING_SOURCE_DEAL_FIELD");
+                    Option::set($this->MODULE_ID, "PERSONAL_NUMBER_CONTACT_FIELD");
+                    Option::set($this->MODULE_ID, "CITY_CONTACT_FIELD");
+                    Option::set($this->MODULE_ID, "SEX_CONTACT_FIELD");
+                    Option::set($this->MODULE_ID, "ADDRESS_CONTACT_FIELD");
+
                     Option::set($this->MODULE_ID, "COUNTRY_STORE_ID");
                     Option::set($this->MODULE_ID, "FOOD_STORE_ID");
                     Option::set($this->MODULE_ID, "RESORT_STORE_ID");
+                    Option::set($this->MODULE_ID, "TOUR_TYPE_STORE_ID");
+                    Option::set($this->MODULE_ID, "ADVERTISING_SOURCES_STORE_ID");
 
                     break;
             }
@@ -167,10 +177,13 @@ class travelsoft_bx24customizer extends CModule
 
     public function deleteOptions()
     {
+        //------option 1---------
         Option::delete($this->MODULE_ID, array("name" => "MASTERTOUR_API_URL"));
         Option::delete($this->MODULE_ID, array("name" => "MASTERTOUR_SECRET_API_KEY"));
         Option::delete($this->MODULE_ID, array("name" => "MASTERTOUR_INFO_LEAD_CODE_FIELD"));
+        //-----------------------
 
+        //------option 2---------
         Option::delete($this->MODULE_ID, array("name" => "MASTERTOUR_INFO_DEAL_CODE_FIELD"));
         Option::delete($this->MODULE_ID, array("name" => "MASTERTOUR_ID_CODE_FIELD"));
         Option::delete($this->MODULE_ID, array("name" => "TOUR_DATE_DEAL_FIELD"));
@@ -178,8 +191,19 @@ class travelsoft_bx24customizer extends CModule
         Option::delete($this->MODULE_ID, array("name" => "RESORT_DEAL_FIELD"));
         Option::delete($this->MODULE_ID, array("name" => "DURATION_DEAL_FIELD"));
         Option::delete($this->MODULE_ID, array("name" => "FOOD_DEAL_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "DISCOUNT_DEAL_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "TOUR_TYPE_DEAL_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "ADVERTISING_SOURCE_DEAL_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "PERSONAL_NUMBER_CONTACT_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "CITY_CONTACT_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "SEX_CONTACT_FIELD"));
+        Option::delete($this->MODULE_ID, array("name" => "ADDRESS_CONTACT_FIELD"));
+
         Option::delete($this->MODULE_ID, array("name" => "COUNTRY_STORE_ID"));
         Option::delete($this->MODULE_ID, array("name" => "FOOD_STORE_ID"));
         Option::delete($this->MODULE_ID, array("name" => "RESORT_STORE_ID"));
+        Option::delete($this->MODULE_ID, array("name" => "TOUR_TYPE_STORE_ID"));
+        Option::delete($this->MODULE_ID, array("name" => "ADVERTISING_SOURCES_STORE_ID"));
+        //-----------------------
     }
 }

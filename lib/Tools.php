@@ -2,9 +2,12 @@
 
 namespace travelsoft\bx24customizer;
 
+use CUser;
+use travelsoft\bx24customizer\stores\AdvertisingSources;
 use travelsoft\bx24customizer\stores\Country;
 use travelsoft\bx24customizer\stores\Food;
 use travelsoft\bx24customizer\stores\Resort;
+use travelsoft\bx24customizer\stores\TourType;
 
 /**
  * Tools clss
@@ -93,6 +96,16 @@ class Tools
         ];
 
         return $arrCurrencyMatching[$currency] ?? '';
+    }
+
+    private static function normalizeSex($sex)
+    {
+        $arrSex = [
+            0 => 196,
+            1 => 197
+        ];
+
+        return $arrSex[$sex] ?? '';
     }
 
     /**
@@ -309,6 +322,7 @@ class Tools
 
             $contactFields = self::generateContactFields($agreement);
             self::updateOrCreateContact($contactFields);
+            echo "<pre>" . print_r($contactFields, true) . "</pre>";
 
             $dealFields = self::generateDealFields($agreement, $contactFields['ID']);
             self::updateOrCreateDeal($dealFields);
@@ -335,7 +349,12 @@ class Tools
                     ],
                 ],
             ],
-            'BIRTHDATE' => $agreement['clientBirthday']
+            'BIRTHDATE' => $agreement['clientBirthday'],
+            Fields::getCityContactField() => $agreement['clientCity'],
+            Fields::getAddressContactField() => $agreement['clientAddress'],
+            Fields::getPersonalNumberContactField() => $agreement['clientPassportId'],
+            Fields::getSexContactField() => self::normalizeSex($agreement['sex']),
+            'ASSIGNED_BY_ID' => self::getUserByMasterTourId($agreement['creatorId']),
         ];
 
         return $contactFields;
@@ -354,6 +373,10 @@ class Tools
             Fields::getDurationDealField() => $agreement['nights'],
             Fields::getFoodDealField() => Food::getIblockIdByMasterTourId($agreement['pansionId']),
             Fields::getInfoCodeField() => self::createMasterTourDealInfoForSave($agreement),
+            Fields::getDiscountDealField() => $agreement['discount'],
+            Fields::getTourTypeDealField() => TourType::getIblockIdByMasterTourId($agreement['tourTypeId']),
+            Fields::getAdvertisingSourceDealField() => AdvertisingSources::getIblockIdByMasterTourId($agreement['advertiseId']),
+            'ASSIGNED_BY_ID' => self::getUserByMasterTourId($agreement['creatorId']),
             'CONTACT_ID' => $contactId,
         ];
         if (!empty($agreement['turists'][0]['phone'])) {
@@ -365,5 +388,18 @@ class Tools
         }
 
         return $dealFields;
+    }
+
+
+    private static function getUserByMasterTourId($masterTourId)
+    {
+        $filter = ["UF_MASTER_TOUR_ID" => $masterTourId];
+        $by = "NAME";
+        $order = "desc";
+        $rsUsers = CUser::GetList($by, $order, $filter);
+        if ($arUser = $rsUsers->Fetch()) {
+            return $arUser['ID'];
+        }
+        return '';
     }
 }

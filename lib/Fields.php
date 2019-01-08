@@ -104,6 +104,90 @@ class Fields
     public static function resortStoreId()
     {
         return self::getCodeField('RESORT_STORE_ID');
-        //return '33';
+    }
+
+    /**
+     * @return string
+     */
+    public static function tourTypeStoreId()
+    {
+        return self::getCodeField('TOUR_TYPE_STORE_ID');
+        //return '34';
+    }
+
+    public static function advertisingSourcesStoreId()
+    {
+        return self::getCodeField('ADVERTISING_SOURCES_STORE_ID');
+        //return '35';
+    }
+
+    /**
+     * Поле скидка (сделка)
+     * @return string
+     */
+    public static function getDiscountDealField()
+    {
+        return self::getCodeField('DISCOUNT_DEAL_FIELD');
+        //return 'UF_CRM_1546603207';
+    }
+
+    /**
+     * Поле тип тура (сделка)
+     * @return string
+     */
+    public static function getTourTypeDealField()
+    {
+        return self::getCodeField('TOUR_TYPE_DEAL_FIELD');
+        //return 'UF_CRM_1546607537';
+    }
+
+    /**
+     * Поле источник рекламы (сделка)
+     * @return string
+     */
+    public static function getAdvertisingSourceDealField()
+    {
+        return self::getCodeField('ADVERTISING_SOURCE_DEAL_FIELD');
+        //return 'UF_CRM_1546607622';
+    }
+
+    /**
+     * Поле личный номер (контакт)
+     * @return string
+     */
+    public static function getPersonalNumberContactField()
+    {
+        return self::getCodeField('PERSONAL_NUMBER_CONTACT_FIELD');
+        //return 'UF_CRM_1546612462';
+    }
+
+    /**
+     * Поле город (контакт)
+     * @return string
+     */
+    public static function getCityContactField()
+    {
+        return self::getCodeField('CITY_CONTACT_FIELD');
+        //return 'UF_CRM_5C0A8184D0F92';
+    }
+
+    /**
+     * Поле пол (контакт)
+     * @return string
+     */
+    public static function getSexContactField()
+    {
+        return self::getCodeField('SEX_CONTACT_FIELD');
+        //return 'UF_CRM_1546612742';
+    }
+
+    /**
+     * Поле адрес (контакт)
+     * @return string
+     */
+    public static function getAddressContactField()
+    {
+        return self::getCodeField('ADDRESS_CONTACT_FIELD');
+        //return 'UF_CRM_1546613848';
     }
 }

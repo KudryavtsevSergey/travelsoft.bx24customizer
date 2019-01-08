@@ -10,9 +10,9 @@ namespace travelsoft\bx24customizer\traits;
 
 trait MasterTourRelatedStores
 {
-    public static function getIblockIdByMasterTourId($masterId)
+    public static function getIblockIdByMasterTourId($masterId, $masterTourProperty = 'MASTER_TOUR_ID')
     {
-        $items = self::get(['filter' => ['PROPERTY_MASTER_TOUR_ID' => $masterId]]);
+        $items = self::get(['filter' => ["PROPERTY_{$masterTourProperty}" => $masterId]]);
 
         if(empty($items)){
             return '';
@@ -20,7 +20,7 @@ trait MasterTourRelatedStores
 
         $item = current($items);
 
-        if($item['PROPERTIES']['MASTER_TOUR_ID']['VALUE'] != $masterId){
+        if($item['PROPERTIES'][$masterTourProperty]['VALUE'] != $masterId){
             return '';
         }
 

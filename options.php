@@ -46,7 +46,7 @@ $db_iblock = CIBlock::GetList(["SORT" => "ASC"]);
 while ($arRes = $db_iblock->Fetch())
     $arIBlocks[$arRes["ID"]] = "[" . $arRes["ID"] . "] " . $arRes["NAME"];
 
-$main_options = [
+$type_options = [
     'TOTAL' => [
         'MASTERTOUR_API_URL' => [
             'DESC' => '',
@@ -88,6 +88,34 @@ $main_options = [
             'DESC' => '',
             'TYPE' => 'text',
         ],
+        'DISCOUNT_DEAL_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
+        'TOUR_TYPE_DEAL_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
+        'ADVERTISING_SOURCE_DEAL_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
+        'PERSONAL_NUMBER_CONTACT_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
+        'CITY_CONTACT_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
+        'SEX_CONTACT_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
+        'ADDRESS_CONTACT_FIELD'  => [
+            'DESC' => '',
+            'TYPE' => 'text',
+        ],
         'COUNTRY_STORE_ID' => [
             'DESC' => '',
             'TYPE' => 'select',
@@ -103,12 +131,23 @@ $main_options = [
             'TYPE' => 'select',
             'VALUES' => $arIBlocks
         ],
+        'TOUR_TYPE_STORE_ID'  => [
+            'DESC' => '',
+            'TYPE' => 'select',
+            'VALUES' => $arIBlocks
+        ],
+        'ADVERTISING_SOURCES_STORE_ID'  => [
+            'DESC' => '',
+            'TYPE' => 'select',
+            'VALUES' => $arIBlocks
+        ],
     ]
 ];
 
 $module_options = \Bitrix\Main\Config\Option::getForModule($mid);
 if (!empty($module_options)) {
     foreach (\array_keys($module_options) as $name) {
+        $main_options["TOTAL"][$name] = $type_options["TOTAL"][$name];
         $main_options["TOTAL"][$name]['DESC'] = Loc::getMessage("TRAVELSOFT_BX24CUSTOMIZER_OPTION_" . $name);
     }
 }
